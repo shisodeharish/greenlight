@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"expvar"
 	"flag"
-	"fmt" // New import
+	"fmt"
 	"log/slog"
 	"os"
 	"runtime"
@@ -15,14 +15,20 @@ import (
 
 	"greenlight.shisodeharish.net/internal/data"
 	"greenlight.shisodeharish.net/internal/mailer"
+	"greenlight.shisodeharish.net/internal/vcs" // New import
 
 	_ "github.com/lib/pq"
+)
+
+// Make version a variable (rather than a constant) and set its value to vcs.Version().
+var (
+	version = vcs.Version()
 )
 
 // Declare a string containing the application version number. Later in the book we'll
 // generate this automatically at build time, but for now we'll just store the version
 // number as a hard-coded global constant.
-const version = "1.0.0"
+// const version = "1.0.0"
 
 // Update the config struct to hold the SMTP server settings.
 type config struct {
